@@ -3,3 +3,5 @@
 *.png
 .idea
 cookies
+
+*.sqlite3
