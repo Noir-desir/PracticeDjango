@@ -1,7 +1,8 @@
 from django.shortcuts import render,HttpResponse
 import datetime
-# Create your views here.
 
+# Create your views here.
+from blog import models
 
 def cur_time(request):
 
@@ -10,17 +11,24 @@ def cur_time(request):
     return render(request, 'cur_time.html', {'abc':times})
 
 
-user_list = []
+# user_list = []
 
 
 def userInfo(req):
     if req.method == 'POST':
-        username = req.POST.get('username', None)
-        sex = req.POST.get('sex', None)
-        email = req.POST.get('email', None)
-        user = {'username': username, 'sex': sex,'email': 'email'}
-        user_list.append(user)
+        u = req.POST.get('username', None)
+        s = req.POST.get('sex', None)
+        e = req.POST.get('email', None)
+        # user = {'username': username, 'sex': sex,'email': email}
+        # user_list.append(user)
 
-        # return  render(req, 'index.html', {'user_list': user_list})
-        # print(username, sex, email)
+        models.UserInfo.objects.create(
+            username=u,
+            sex=s,
+            email=e,
+
+        )
+
+    user_list = models.UserInfo.objects.all()
+
     return render(req, 'index.html', {'user_list': user_list})

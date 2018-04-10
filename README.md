@@ -11,7 +11,8 @@
 ```python manage.py startapp blog```
 ### 3. 启动django项目8080端口：
 ```python manage.py runserver 8080```
----
+
+
 ## Day 2：
 ### 1. urls.py用法（引导并创建请求地址）：
 * url(参数为 正则式路径，view.py中的函数):
@@ -21,7 +22,7 @@
 ### 2. views.py用法（引导html界面，后台逻辑处理）:
 * render函数(返回结果信息至html，注意格式):
 > ```return render(request, 'cur_time.html', {'abc':times})```  
-```return render(req, 'index.html', {'user_list': user_list})```
+> ```return render(req, 'index.html', {'user_list': user_list})```
 ### 3. html中循环遍历使用(模式化：引用变量使用{{}})：
     {% for i in user_list %}
     <tr>
@@ -31,3 +32,22 @@
     </tr>
 
     {% endfor %}
+
+
+## Day 3:
+### 1.models.py用法(数据库交互，配置字段格式)：
+    class Userinfo(models.Model):
+        username = models.CharField(max_length=64)
+        sex = models.CharField(max_length=64)
+        email = models.CharField(max_length=64)
+### 2.数据库初始化前执行
+    python manage.py makemigrations
+    python manage.py migrate
+### 3.写入数据库方法(在views.py中)：
+    models.UserInfo.objects.create(
+                username=u,
+                sex=s,
+                email=e,)
+### 4.读取数据库方法：
+    user_list = models.UserInfo.objects.all()
+### 5.注意检查在INSTALLED_APPS添加‘blog’，易报错
