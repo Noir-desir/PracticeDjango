@@ -51,3 +51,5 @@
 ### 4.读取数据库方法：
     user_list = models.UserInfo.objects.all()
 ### 5.注意检查在INSTALLED_APPS添加‘blog’，易报错
+### 6.社区版pycharm数据库查看安装：
+> file/setting/plugins  安装database Nivagator
