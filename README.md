@@ -91,7 +91,7 @@ STATICFILES_DIRS = (
      
 )
 ```
-注意：元组后面的','必须带上  
+- *注意：元组后面的','必须带上*
 3. for example：
 ```html
 <script src="/abc/js/jquery-3.3.1.min.js"></script>
@@ -99,4 +99,4 @@ STATICFILES_DIRS = (
     $("h1").css("color","red")
 </script>
 ```
-注意：路径前必须必须带上'/'
+- *注意：路径前必须必须带上'/'*
