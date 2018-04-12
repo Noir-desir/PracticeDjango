@@ -66,3 +66,37 @@ user_list = models.UserInfo.objects.all()
 ### 5.注意检查在INSTALLED_APPS添加‘blog’，易报错
 ### 6.社区版pycharm数据库查看安装：
 > file/setting/plugins  安装database Nivagator
+
+
+Day 4：
+---
+### 1. wsgi服务器了解一下
+### 2. Django建数据库内部流程:
+> 1. settings.py读取`INSTALLED_APPS['blog']`
+> 2. blog文件夹下面的models.py读取创建的类`class UserInfo(models.Model):`
+### 3. settings用法(前端等文件配置):
+1. 网页模板文件夹路径：
+ ```python
+TEMPLATES = [
+{
+    'DIRS': [os.path.join(BASE_DIR, 'templates')],
+}]
+```
+2. 静态文件夹路径（图片,JS等）：
+ ```python
+STATIC_URL = '/abc/'  #设置路径别名链接，文件移动只用修改下面绝对路径
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "statics"),  #静态文件路径,一般在CDN上
+     
+)
+```
+注意：元组后面的','必须带上
+3. for example：
+```html
+<script src="/abc/js/jquery-3.3.1.min.js"></script>
+<script>
+    $("h1").css("color","red")
+</script>
+```
+注意：路径前必须必须带上'/'
