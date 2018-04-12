@@ -91,7 +91,7 @@ STATICFILES_DIRS = (
      
 )
 ```
-注意：元组后面的','必须带上
+注意：元组后面的','必须带上  
 3. for example：
 ```html
 <script src="/abc/js/jquery-3.3.1.min.js"></script>
