@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render, HttpResponse
 import datetime
 
 # Create your views here.
@@ -32,3 +32,24 @@ def userInfo(req):
     user_list = models.UserInfo.objects.all()
 
     return render(req, 'index.html', {'user_list': user_list})
+
+def special_case_2003(req):
+
+    return HttpResponse("2003")
+
+def year_archive(req, year, month):
+
+    return HttpResponse(year+'year'+month+'month')
+
+
+def index(req):
+    if req.method == "POST":
+        username = req.POST.get('username')
+        pwd = req.POST.get('pwd')
+
+        if username == 'alex' and pwd == '123':
+            return HttpResponse('登录成功')
+        else:
+            return render(req, "login.html")
+
+    return render(req, "login.html")

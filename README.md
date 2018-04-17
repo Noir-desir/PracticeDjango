@@ -91,7 +91,7 @@ STATICFILES_DIRS = (
      
 )
 ```
-- *注意：元组后面的','必须带上*
+注意：元组后面的','必须带上  
 3. for example：
 ```html
 <script src="/abc/js/jquery-3.3.1.min.js"></script>
@@ -99,4 +99,69 @@ STATICFILES_DIRS = (
     $("h1").css("color","red")
 </script>
 ```
-- *注意：路径前必须必须带上'/'*
+注意：路径前必须必须带上'/'
+
+Day 5：
+---
+### Django URL (路由系统)
+```
+urlpatterns = [
+    url(正则表达式, views视图函数，参数，别名),
+]
+```
+> 参数说明：
+- 一个正则表达式字符串
+- 一个可调用对象，通常为一个视图函数或一个指定视图函数路径的字符串
+- 可选的要传递给视图函数的默认参数（字典形式）
+- 一个可选的name参数
+### 1. URL连接
+```python
+ url(r'^articles/2003/$', views.special_case_2003),
+ #正则表达式的严格起止匹配
+ url(r'^articles/[0-9]{4}/', views.year_archive),
+ #4位数字后面可以接任何字符均跳转到views.year_archive
+```
+### 2. 截取URL中参数
+- 无名参数（使用正则式中括号确定参数）
+```python
+url(r'^articles/([0-9]{4})/([0-9]{2})/$', views.year_archive),
+```
+**注**：视图函数views.py 中根据***传参位置***来截取字符串
+```python
+def year_archive(req, y, m):
+
+    return HttpResponse(y+'year'+m+'month')
+```
+- 有名参数( `(?P<year>[0-9]{4})` )
+```python
+url(r'^articles/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/$', views.year_archive),
+```
+**注**：视图函数views.py 中根据***制定名称***来截取字符串 
+```python
+def year_archive(req, year, month):
+
+    return HttpResponse(year+'year'+month+'month')
+```
+### 3. URL别名
+（为了防止后台多次更改url地址）
+for example：
+```python
+url(r'^index', views.index, name="alex")
+```
+- views.py中后台处理：
+```python
+def index(req):
+    if req.method == "POST":
+        ###
+        return HttpResponse('登录成功')
+    ###
+    return render(req, "login.html")
+```
+- login.html前台展示：
+> {% url "alex" %} Django固定模板
+```html
+<form action={% url "alex" %} method="post">
+<input type="text" name="username">
+<input type="password" name="pwd">
+<input type="submit" value="submit">
+```

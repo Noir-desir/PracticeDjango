@@ -20,6 +20,17 @@ from blog import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^cur_time', views.cur_time),
+    url(r'^userInfo', views.userInfo),
 
-    url(r'^userInfo', views.userInfo)
+#no named group 无名参数
+    url(r'^articles/2003/$', views.special_case_2003),
+    # url(r'^articles/2003/', views.special_case_2003),
+
+    # url(r'^articles/[0-9]{4}/$', views.year_archive),
+    # url(r'^articles/([0-9]{4})/$', views.year_archive),
+    # url(r'^articles/([0-9]{4})/([0-9]{2})/$', views.year_archive),
+#named group 有名参数
+    url(r'^articles/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/$', views.year_archive),
+
+    url(r'^index', views.index, name="alex")
 ]
