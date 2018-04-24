@@ -37,6 +37,7 @@ def special_case_2003(req):
 
     return HttpResponse("2003")
 
+
 def year_archive(req, year, month):
 
     return HttpResponse(year+'year'+month+'month')
@@ -53,3 +54,7 @@ def index(req):
             return render(req, "login.html")
 
     return render(req, "login.html")
+
+
+def introduce(req):
+    return HttpResponse('ok')

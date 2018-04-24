@@ -165,3 +165,21 @@ def index(req):
 <input type="password" name="pwd">
 <input type="submit" value="submit">
 ```
+Day 6：
+---
+### 4. 分发urls.py到各个APP
+(为了让各个APP业务独立出来)
+- 引入include
+```python
+    from django.conf.urls import url, include
+
+```
+- 在根目录中的urls.py中添加(url分发到APP目录)
+```python
+    url(r'^blog/', include('blog.urls')),
+```
+- APP目录中新建urls.py，独立使用urls.py
+```python
+    url(r'new/story', views.introduce),
+```
+(在blog文件夹中的urls.py不能使用'^'为开头，因为根目录下的blog才是固定开头)
