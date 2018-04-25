@@ -103,7 +103,7 @@ STATICFILES_DIRS = (
 
 Day 5：
 ---
-### Django URL (路由系统)
+## Django URL (路由系统)
 ```
 urlpatterns = [
     url(正则表达式, views视图函数，参数，别名),
@@ -183,3 +183,32 @@ Day 6：
     url(r'new/story', views.introduce),
 ```
 (在blog文件夹中的urls.py不能使用'^'为开头，因为根目录下的blog才是固定开头)
+
+Day 7：
+---
+## Django Views (视图函数)
+### 1. HttpRequest对象的属性和方法
+- **path**  返回请求页面的全路径，不包括域名
+```python
+    print("req.path", req.path)
+```
+> req.path /blog/pay/index
+- **method**  请求中使用的HTTP方法的字符串表示。全大写表示
+```python
+    if req.method == "POST":
+```
+> 判断请求方法是不是POST（GET）
+- **GET**  包含所有HTTP GET**参数**的类字典对象
+```python
+    print("req.GET", req.GET)
+```
+> req.GET <QueryDict: {}>
+- **POST**  包含所有HTTP POST**参数**的类字典对象
+- **COOKIES**  包含所有cookies的标准Python字典对象；keys和values都是字符串
+- **FILES**   包含所有上传文件的类字典对象；
+FILES中的每一个Key都是`<input type="file" name="" />`标签中name属性的值，
+FILES中的每一个value同时也是一个标准的python字典对象，
+包含下面三个Keys：
+    + filename：      上传文件名，用字符串表示
+    + content_type:   上传文件的Content Type
+    + content：       上传文件的原始内容

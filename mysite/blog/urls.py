@@ -11,4 +11,6 @@ from blog import views
 
 urlpatterns = [
     url(r'new/story', views.introduce),
+    url(r'pay/index', views.index),
+    url(r'login', views.login)
 ]

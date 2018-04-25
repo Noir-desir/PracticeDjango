@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, render_to_response, redirect
 import datetime
 
 # Create your views here.
@@ -44,6 +44,8 @@ def year_archive(req, year, month):
 
 
 def index(req):
+    print("req.GET", req.GET)
+    print("req.path", req.path)
     if req.method == "POST":
         username = req.POST.get('username')
         pwd = req.POST.get('pwd')
@@ -53,8 +55,29 @@ def index(req):
         else:
             return render(req, "login.html")
 
-    return render(req, "login.html")
+    # return render(req, "login.html")
+    # return render(req, "new.html")
+    alex = "you are welcome"
+    eric = "xxxx"
+    xialv = "shax"
+    avlin = "handsome"
 
+    # return render_to_response("new.html",{"name":alex, "name1":eric })
+    # return render_to_response("new.html", locals())
+    # return redirect('http://www.baidu.com')
+    return redirect("http://www.baidu.com")
+
+
+def login(req):
+    if req.method == "POST":
+        if 1:
+            return redirect("http://www.baidu.com")
+        # return redirect("blog/login")
+        return redirect("login")
+
+
+
+    return render(req, 'login.html')
 
 def introduce(req):
     return HttpResponse('ok')
