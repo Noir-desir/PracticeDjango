@@ -212,3 +212,32 @@ FILES中的每一个value同时也是一个标准的python字典对象，
     + filename：      上传文件名，用字符串表示
     + content_type:   上传文件的Content Type
     + content：       上传文件的原始内容
+
+Day 8：
+---
+### 2. HttpResponse对象
+- **页面渲染**：`render()` ; `render_to_response()`
+```python
+return render(req, "login.html")
+return render_to_response("new.html",{"name":alex, "name1":eric })
+```
+- **页面跳转**：`redirect("路径")`
+```python
+return redirect("home.html")
+```
+> 不同点(模拟京东登录成功后，跳转到主页，url地址不同)：
+> - render的页面需要模板语言渲染,需要的将数据库的数据加载到html,那么所有的这一部分
+除了写在home(京东主页)的视图函数中,必须还要写在login(登录页面)中,代码重复
+> - **重要**url没有跳转到/home/,而是还在/login/,所以当刷新后又得重新登录.
+
+- **locals()**：可以直接将函数中所有的变量传给模板
+```python
+    alex = "you are welcome"
+    eric = "xxxx"
+    xialv = "shax"
+return render_to_response("new.html", locals())
+```
+```html
+<h1>ok!{{ alex }}</h1>
+<h1>ok!{{ xialv }}</h1>   #界面参数渲染
+```

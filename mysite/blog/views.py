@@ -62,18 +62,18 @@ def index(req):
     xialv = "shax"
     avlin = "handsome"
 
-    # return render_to_response("new.html",{"name":alex, "name1":eric })
+    return render_to_response("new.html", {"name":alex, "name1":eric })
     # return render_to_response("new.html", locals())
     # return redirect('http://www.baidu.com')
-    return redirect("http://www.baidu.com")
+    # return redirect("http://www.baidu.com")
 
 
 def login(req):
     if req.method == "POST":
         if 1:
-            return redirect("http://www.baidu.com")
+            return redirect("home.html")
+            # return render(req, "home.html")
         # return redirect("blog/login")
-        return redirect("login")
 
 
 
@@ -81,3 +81,7 @@ def login(req):
 
 def introduce(req):
     return HttpResponse('ok')
+
+def home(req):
+    name = '泽y'
+    return render(req, 'home.html', {"name": name})
