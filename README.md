@@ -241,3 +241,34 @@ return render_to_response("new.html", locals())
 <h1>ok!{{ alex }}</h1>
 <h1>ok!{{ xialv }}</h1>   #界面参数渲染
 ```
+
+Day 9：
+---
+## Template (模板语言)
+### 1. 什么是模板语言
+    - 定义：html+逻辑控制语句
+    - 作用：前端与后端的纽带，起到桥梁作用。
+           将后端数据传递到前端显示，使数据渲染在页面
+### 2. 使用方法
+    $python manage.py shell
+进入该django项目的环境
+```python
+In [2]: from django.template import Context, Template
+In [3]: t=Template('hello{{name}}')  #注意格式（在html中模板：两个花括号）
+In [4]: c=Context({'name':'alex'})   #注意格式（在视图函数中引用：json格式）
+In [5]: t.render(c)
+Out[5]: 'helloalex'
+
+```
+循环调用
+```python
+In [6]: t = Template('python{{doing}}')  #写在循环外，可以减少模板对象，减少内存占用
+In [8]: for do in ['spyder','data','linux']:
+   ...:     result=t.render(Context({'doing':do}))
+   ...:     print(result)
+
+pythonspyder
+pythondata
+pythonlinux
+
+```
