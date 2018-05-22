@@ -83,5 +83,14 @@ def introduce(req):
     return HttpResponse('ok')
 
 def home(req):
-    name = '泽y'
-    return render(req, 'home.html', {"name": name})
+    name1 = ['泽y', '小q', '大b']
+    name2 = {"usr": "alex", "sex": "boy"}
+    time3 = datetime.datetime.now()
+
+    class Personal():
+        def __init__(self, name, age):
+            self.name = name
+            self.age = age
+    obj = Personal('jiang', 18)
+
+    return render(req, 'home.html', {"name": name2})

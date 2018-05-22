@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-<h1>{{ name }}欢迎登录</h1>
+<h1>
+    <!--{% if 0%}-->
+    <!--<p>hello word</p>-->
+    <!--{% elif name %}-->
+        <!--<p>hello2</p>-->
+<!--{% endif %}-->
+{% for i in name %}
+    <p>{{ forloop.counter }}:{{ i }}</p>
+    {% endfor%}
+
+</h1>
 </body>
 </html>

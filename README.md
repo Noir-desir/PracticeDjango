@@ -249,7 +249,7 @@ Day 9：
     - 定义：html+逻辑控制语句
     - 作用：前端与后端的纽带，起到桥梁作用。
            将后端数据传递到前端显示，使数据渲染在页面
-### 2. 使用方法
+### 2.1 `{{变量}}`使用方法1
     $python manage.py shell
 进入该django项目的环境
 ```python
@@ -272,3 +272,90 @@ pythondata
 pythonlinux
 
 ```
+
+Day 10：
+---
+### 2.1 `{{变量}}`使用方法2（推荐）
+```
+def cur_time(request):
+
+    times = datetime.datetime.now()
+
+    return render(request, 'cur_time.html', {'abc':times}) 
+```
+
+### 2.2 万能的`.`
+> 引用列表中的值
+```python
+
+def home(req):
+    name1 = ['泽y', '小q', '大b']
+    return render(req, 'home.html', {"name": name1})
+```
+```html
+<h1>{{ name.1 }}欢迎登录</h1>
+```
+页面显示`小q欢迎登录`
+> 引用字典中的值
+```python
+def home(req):
+    name2 = {"usr": "alex", "sex": "boy"}
+    return render(req, 'home.html', {"name": name2})
+```
+```html
+<h1>{{ name.usr }}欢迎登录</h1>
+```
+页面显示`alex欢迎登录`
+> 引用时间格式
+```python
+def home(req):
+    time3 = datetime.datetime.now()
+    return render(req, 'home.html', {"name": time3})
+```
+````html
+<h1>{{ name.year }} {{name.day}} {{name.time}}</h1>
+````
+页面显示`2018 22 9:56 p.m.`
+> 引用对象
+```python
+def home(req):
+    class Personal():
+        def __init__(self, name, age):
+            self.name = name
+            self.age = age
+    obj = Personal('jiang', 18)
+            
+
+    return render(req, 'home.html', {"name": obj})
+```
+```html
+<h1>{{ name.age }}岁啊！ </h1>
+```
+页面显示`18岁啊！`
+
+### 2.3 `{% if %}`判断使用
+```html
+<h1>{% if 0%}          #判断为假
+    <p>hello word</p>  
+    {% elif name %}    #判断为真，执行下面语句
+        <p>hello2</p>
+{% endif %}            #结尾使用
+</h1>
+```
+页面显示`hello2`
+
+### 2.4 `{% for %}`循环使用
+```python
+return render(req, 'home.html', {"name": name1}) #返回列表
+```
+```html
+{% for i in name %}
+    <p>{{ forloop.counter }}:{{ i }}</p>  #forloop.counter计数器使用
+    {% endfor%}
+```
+页面显示  
+> 1:泽y
+2:小q
+3:大b
+
+
