@@ -358,4 +358,38 @@ return render(req, 'home.html', {"name": name1}) #返回列表
 2:小q
 3:大b
 
+Day 11：
+---
+### 2.5 `|`过滤器使用
+相当于python内置方法
+> 语法格式： {{name|filter:param}}
 
+> `value1="aBcDe"`  
+`{{ value1|upper }}`  
+得到所有字母大写
+
+> `value2=5`  
+`{{ value2|add:3 }}`  
+得到8
+
+> `value3='he  llo wo r ld'`  
+`{{ value3|cut:' ' }}`  
+得到helloword
+
+> `value4=datetime.datetime.now()`  
+`{{ value4|date:'Y-m-d' }}`  
+得到年月日
+
+>`value5=[]`  
+`{{ value5|default:'空的' }}`  
+得到`空的`
+
+> `value6='<a href="#">跳转</a>'`  
+1.`{{ value6 }}`  
+得到字符串`<a href="#">跳转</a>`  
+2.```{% autoescape off %}  
+     {{ value6 }}  
+{% endautoescape %}```  
+得到html`跳转`  
+3.`{{ value6|safe }}`  
+得到html`跳转` 
